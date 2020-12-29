@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.prevWarapper{
+    background-color: #C6D8D3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+}
+.readMore{
+    position: absolute; 
+    bottom: 10px;
+    right: 10px;
+    text-decoration: none;
+    color: #F0544F;
+}
+.prevTitle{
+    margin: 0 0 10px 0;
+    color: #331832;
+}
+.prevParagraph{
+    margin: 0 0 25px 0; 
+    color: #331832;
+}
+.textarea--edit{
+    width: 100%;
+    min-height: 200px;
+}
