@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import './loginStyle.css';
 
-const LoginCred = () => {
-  const [{ username, password }, setCredentials] = useState({
-    username: '',
-    password: '',
-  });
+type Props = {
+  username: string;
+  password: string;
+  setUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  submitHandler: () => void;
+};
 
+export const LoginCred = ({ username, password, setUsername, setPassword, submitHandler }: Props) => {
   return (
     <div className="container">
       <form className="login">
         <label htmlFor="username">
           Username
-          <input
-            placeholder="Username"
-            value={username}
-            onChange={(e) =>
-              setCredentials({
-                username: e.target.value,
-                password,
-              })}
-          />
+          <input placeholder="Username" value={username} onChange={(e) => setUsername(e)} />
         </label>
         <label htmlFor="password">
           Password
@@ -28,17 +23,11 @@ const LoginCred = () => {
             placeholder="Password"
             type="password"
             value={password}
-            onChange={(e) =>
-              setCredentials({
-                username,
-                password: e.target.value,
-              })}
+            onChange={(e) => setPassword(e)}
           />
         </label>
       </form>
-      <button type="submit">Login</button>
+      <button type="submit" onClick={() => submitHandler()}>Login</button>
     </div>
   );
 };
-
-export default LoginCred;

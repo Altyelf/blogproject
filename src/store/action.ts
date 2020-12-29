@@ -1,29 +1,31 @@
-// export const ADD_POST = 'ADD_POST';
+export const LOGIN = 'LOGIN';
 export const EDIT_POST = 'EDIT_POST';
 
-// export type AddPostAction = {
-//   type: typeof ADD_POST;
-//   id: number;
-// };
+export type AddLogin = {
+  type: typeof LOGIN;
+  id: number;
+  username: string;
+  password: string;
+};
 
-// export const addPost = (id: number) => {
-//   return {
-//     type: 'ADD_POST',
-//     id,
-//   };
-// };
+export const addLogin = (username: string, password: string) => {
+  return {
+    type: 'LOGIN',
+    username,
+    password,
+  };
+};
 
 export type EditPostAction = {
   type: typeof EDIT_POST;
   value: string;
-  id: number
+  id: number;
 };
 
 export const editPost = (value: string, id: number) => {
   return {
     type: 'EDIT_POST',
     value,
-    id
+    id,
   };
 };
-
