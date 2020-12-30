@@ -1,15 +1,21 @@
+import { cloneDeep } from 'lodash';
 import { combineReducers } from 'redux';
-import { EDIT_POST, EditPostAction, LOGIN, AddLogin } from './action';
+import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction } from './action';
 import { posts, Posts } from '../apiData/articles';
 import { loginInfo, LoginInfo } from '../components/login/loginInfo';
 
-export const reducer2 = (state: Posts[] = posts, action: EditPostAction) => {
+
+export const reducer1 = (state: Posts[] = posts, action: SetPostAction | EditPostAction) => {
   switch (action.type) {
-    case EDIT_POST: {
-      const newPosts = [...posts];
+    case SET_POST: {
+      return action.data;
+    }
+    case EDIT_POST: {   
+      console.log('Action', action.value);
+      const newPosts = cloneDeep(state);
       const indexID = newPosts.findIndex((item) => item.id === action.id);
-      posts[indexID].body = action.value;
-      console.log('Call Action Post 2', newPosts[indexID].body);
+      console.log('Edit Call 1', indexID);
+      newPosts[indexID].body = action.value;
       return newPosts;
     }
     default:
@@ -24,10 +30,11 @@ export const reducer3 = (state: LoginInfo[] = loginInfo, action: AddLogin) => {
       const filteredUser = newLoginInfo.filter(
         (item) => item.username === action.username && item.password === action.password
       );
-      if (filteredUser.length === 1) {
-        const newFilteredUser = filteredUser.map((item) => item.loggedin = true);
-        console.log('this is logged in');
-      }
+      // if (filteredUser.length === 1) {
+      //   const newFilteredUser = filteredUser.map((item) => item.loggedin === true);
+      //   // newFilteredUser = [true];
+      //   console.log('this is logged in');
+      // }
       console.log('This is login', filteredUser);
       return newLoginInfo;
     }
@@ -36,4 +43,5 @@ export const reducer3 = (state: LoginInfo[] = loginInfo, action: AddLogin) => {
   }
 };
 
-export const rootReducer = combineReducers({ reducer2, reducer3 });
+export const rootReducer = combineReducers({ reducer1, reducer3 });
+export type RootState = ReturnType<typeof rootReducer>;
