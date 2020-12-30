@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PostPrev } from '../components/blog/postPreview';
-import { Posts, fetchPosts } from '../apiData/articles';
+import { Posts } from '../apiData/articles';
+import { RootState } from '../store/reducer';
+import { fetchPostsData } from '../store/action';
 
 
 const Home = () => {
-  const postData = useSelector((state: Posts[]) => state);
+  const postData = useSelector((state: RootState) => state.reducer1);
   const dispatch = useDispatch();
+  console.log('post', postData);
 
   // console.log('fe', fetchPosts());
   // fetchPosts();
+
+  useEffect(() => {
+    if (postData.length === 0) {
+      dispatch(fetchPostsData());
+    }
+  }, []);
+
 
   return (
 
