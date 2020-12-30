@@ -1,50 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { PostPrev } from '../components/blog/postPreview';
-import { Posts } from '../apiData/articles';
-import { RootState } from '../store/reducer';
-import { fetchPostsData } from '../store/action';
-
+import React from 'react';
 
 const Home = () => {
-  const postData = useSelector((state: RootState) => state.reducer1);
-  const dispatch = useDispatch();
-  console.log('post', postData);
-
-  // console.log('fe', fetchPosts());
-  // fetchPosts();
-
-  useEffect(() => {
-    if (postData.length === 0) {
-      dispatch(fetchPostsData());
-    }
-  }, []);
-
-
   return (
-
-    <div className="container">
-      <div className="row ">
-        <div className="col-xs-12 center-xs">
-          <h1>Blog</h1>
+    <section>
+      <div className="container">
+        <div className="row center-xs margin-bottom--24">
+          <div className="col-xs-12">
+            <h1>Welcome!</h1>
+          </div>
+        </div>
+        <div className="row center-xs">
+          <div className="col-xs-12">
+            <img src="https://happy-memes.com/wp-content/uploads/2020/09/happy-new-year-2021-photos-1.jpeg" alt="" />
+          </div>
         </div>
       </div>
-      <div className="row">
-        {postData.map((item) =>
-          <div key={item.id} className="col-md-4 col-sm-6 col-12 ">
-            <PostPrev
-              prevTilte={item.title}
-              prevParagraph={item.body}
-              prevLink='Read more'
-              id={item.id}
-            />
-          </div>
-        )}
-      </div>
-    </div>
-
+    </section>
   );
-
 };
 
-export default Home; 
+export default Home;
