@@ -14,7 +14,6 @@ export const articleReducer = (state: Posts[] = posts, action: SetPostAction | E
       console.log('Action', action.value);
       const newPosts = cloneDeep(state);
       const indexID = newPosts.findIndex((item) => item.id === action.id);
-      console.log('Edit Call 1', indexID);
       newPosts[indexID].body = action.value;
       return newPosts;
     }
