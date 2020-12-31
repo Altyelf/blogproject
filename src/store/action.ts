@@ -6,6 +6,7 @@ import {Posts} from '../apiData/articles';
 export const LOGIN = 'LOGIN';
 export const EDIT_POST = 'EDIT_POST';
 export const SET_POST = 'SET_POST';
+export const LOGOUT = 'LOGOUT';
 
 
 export type AddLogin = {
@@ -20,6 +21,16 @@ export const addLogin = (username: string, password: string) => {
     type: 'LOGIN',
     username,
     password,
+  };
+};
+
+export type AddLogout = {
+  type: typeof LOGOUT;
+};
+
+export const addLogout = () => {
+  return {
+    type: 'LOGOUT'
   };
 };
 
