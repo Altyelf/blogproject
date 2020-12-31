@@ -22,3 +22,5 @@ export interface LoginInfo {
   admin: boolean,
   loggedin: boolean,
 }
+
+export const LoggedInUser: LoginInfo[] = [];

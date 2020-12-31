@@ -4,18 +4,17 @@ import { Dispatch } from 'redux';
 import { Posts, CommentData } from '../apiData/articles';
 
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 export const EDIT_POST = 'EDIT_POST';
 export const SET_POST = 'SET_POST';
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
-
 export const addComment = () => {
   return {
     type: ADD_COMMENT 
 
   };
 };
-
 
 export type AddLogin = {
   type: typeof LOGIN;
@@ -29,6 +28,16 @@ export const addLogin = (username: string, password: string) => {
     type: 'LOGIN',
     username,
     password,
+  };
+};
+
+export type AddLogout = {
+  type: typeof LOGOUT;
+};
+
+export const addLogout = () => {
+  return {
+    type: 'LOGOUT'
   };
 };
 
