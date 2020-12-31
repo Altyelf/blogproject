@@ -19,6 +19,7 @@ const Login = () => {
   const passwordHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPassword(e.target.value);
   };
+  console.log('data', logoutData);
 
   return (
     <>

@@ -4,15 +4,12 @@ import { PostPrev } from '../components/blog/postPreview';
 import { Posts } from '../apiData/articles';
 import { RootState } from '../store/reducer';
 import { fetchPostsData } from '../store/action';
-
+import { ReadMore } from '../components/blog/readmore';
 
 const Blog = () => {
-  const postData = useSelector((state: RootState) => state.reducer1);
+  const postData = useSelector((state: RootState) => state.articleReducer);
   const dispatch = useDispatch();
-  console.log('post', postData);
-
-  // console.log('fe', fetchPosts());
-  // fetchPosts();
+  const logoutData = useSelector((state: RootState) => state.reducer2);
 
   useEffect(() => {
     if (postData.length === 0) {
@@ -20,9 +17,7 @@ const Blog = () => {
     }
   }, []);
 
-
   return (
-
     <div className="container">
       <div className="row ">
         <div className="col-xs-12 center-xs">
@@ -32,12 +27,17 @@ const Blog = () => {
       <div className="row">
         {postData.map((item) =>
           <div key={item.id} className="col-md-4 col-sm-6 col-12 ">
-            <PostPrev
-              prevTilte={item.title}
-              prevParagraph={item.body}
-              prevLink='Read more'
-              id={item.id}
-            />
+            <div className='preview-wrapper'>
+              <PostPrev
+                prevTilte={item.title}
+                prevParagraph={item.body}
+              /> 
+              {logoutData.length === 1 &&
+              <ReadMore 
+                prevLink='Read more'
+                id={item.id}
+              />}
+            </div>
           </div>
         )}
       </div>

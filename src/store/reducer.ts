@@ -1,13 +1,8 @@
 import { cloneDeep } from 'lodash';
 import { combineReducers } from 'redux';
-import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction, SET_COMMENTS, SetCommentAction } from './action';
+import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction, SET_COMMENTS, SetCommentAction, AddLogout, LOGOUT } from './action';
 import { posts, Posts, commnetData, CommentData } from '../apiData/articles';
-import { loginInfo, LoginInfo } from '../components/login/loginInfo';
-import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction, AddLogout, LOGOUT } from './action';
-import { posts, Posts } from '../apiData/articles';
 import { loginInfo, LoginInfo, LoggedInUser } from '../components/login/loginInfo';
-
-
 
 export const articleReducer = (state: Posts[] = posts, action: SetPostAction | EditPostAction) => {
   switch (action.type) {
@@ -26,11 +21,15 @@ export const articleReducer = (state: Posts[] = posts, action: SetPostAction | E
   }
 };
 
-
 export const commentReducer = (state: CommentData[] = commnetData, action: SetCommentAction) => {
   switch (action.type) {
     case SET_COMMENTS: {
       return action.data;
+    }
+    default:
+      return state;
+  }
+};
 
 export const reducer2 = (state: LoginInfo[] = LoggedInUser, action: AddLogout) => {
   switch (action.type) {
@@ -49,15 +48,19 @@ export const reducer3 = (state: LoginInfo[] = loginInfo, action: AddLogin) => {
   switch (action.type) {
     case LOGIN: {
       const newLoginInfo = cloneDeep(state);
+      console.log('šis te', newLoginInfo);
       const filteredUser = newLoginInfo.filter(
         (item) => item.username === action.username && item.password === action.password
       );
+      console.log('filtered', filteredUser);
       if (filteredUser.length === 1) {
+        LoggedInUser.shift();
         // @ts-ignore
         LoggedInUser.push(filteredUser);
-        console.log('this is logged in', LoggedInUser);
+        console.log('User', LoggedInUser);
       }
-      console.log('This is login', filteredUser);
+      console.log('This user has logged in', state);
+
       return newLoginInfo;
     }
     default:

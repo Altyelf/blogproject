@@ -4,14 +4,12 @@ export const loginInfo: LoginInfo[] = [
     username: 'Jānis',
     password: 'kartupelis',
     admin: true,
-    loggedin: false,
   },
   {
     id: 2,
     username: 'Anna',
     password: 'kartupelis',
     admin: false,
-    loggedin: false,
   },
 ];
 
@@ -20,7 +18,6 @@ export interface LoginInfo {
   username: string,
   password: string,
   admin: boolean,
-  loggedin: boolean,
 }
 
 export const LoggedInUser: LoginInfo[] = [];

@@ -24,7 +24,8 @@ const Post = () => {
   const [inputEdit, setInputEdit] = useState(onePost?.body);
   const [inputComent, setInputComent] = useState('');
   const oneComment = useSelector((state: RootState) => state.commentReducer);
-
+  const logoutData = useSelector((state: RootState) => state.reducer2);
+  console.log('dati2', logoutData);
   return (
     <>
       <div className="container">
@@ -33,14 +34,17 @@ const Post = () => {
             <h1>Post</h1>
           </div>
           <div className="col-xs-8 ">
-
             <h2>{onePost?.title}</h2>
             <p>{onePost?.body}</p>
-            <button
-              type='button'
-              onClick={() => editHandler()}
-            >Edit
-            </button>
+            {
+              logoutData && 
+              <button
+                type='button'
+                onClick={() => editHandler()}
+              >
+                Edit
+              </button>
+            }
             {edit && inputEdit &&
               <>
                 <EditTextInput

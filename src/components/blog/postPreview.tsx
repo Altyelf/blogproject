@@ -5,18 +5,14 @@ import './style.css';
 type Props = {
   prevTilte: string
   prevParagraph: string
-  prevLink: string
-  id: number
 };
 
-export const PostPrev = ({ prevLink, prevParagraph, prevTilte, id }: Props) => {
+export const PostPrev = ({prevParagraph, prevTilte}: Props) => {
 
   return (
     <div className='prevWarapper'>
       <h2 className='prevTitle'>{prevTilte}</h2>
       <p className='prevParagraph'>{prevParagraph}</p>
-      <Link className='readMore' to={`/posts/${id}`}>{prevLink}</Link>
-      
     </div>
   );
 };
