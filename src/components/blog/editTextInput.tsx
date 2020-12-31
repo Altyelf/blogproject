@@ -2,16 +2,16 @@ import React from 'react';
 import './style.css';
 
 type Props = {
-  badyText: string
+  bodyText: string | undefined
   inputChangeHandler: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-export const EditTextInput = ({ badyText, inputChangeHandler }: Props) => {
+export const EditTextInput = ({ bodyText, inputChangeHandler }: Props) => {
   return (
     <>
       <textarea
         className='textarea--edit'
-        value={badyText}
+        value={bodyText}
         onChange={(e) => inputChangeHandler(e)}     
       />
     </>
