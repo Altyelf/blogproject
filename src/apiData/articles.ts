@@ -6,5 +6,14 @@ export interface Posts {
   body: string
 }
 
+export const commnetData: CommentData[] = [];
+export interface CommentData {
+  postId: number
+  id: number,
+  name: string
+  email: string
+  body: string
+}
+
 
 

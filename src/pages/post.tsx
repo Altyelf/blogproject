@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { posts, Posts } from '../apiData/articles';
 import { RootState } from '../store/reducer';
 import { editPost } from '../store/action';
 import { EditTextInput } from '../components/blog/editTextInput';
-
+import { Comments } from '../components/blog/comment';
 
 const Post = () => {
- 
+
   const dispatch = useDispatch();
   const { ids } = useParams<{ ids: string }>();
-  
   const [edit, setEdit] = useState(false);
-
   const inputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInputComent(e.target.value); 
+    setInputEdit(e.target.value);
   };
-
+  const inputComentHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputComent(e.target.value);
+  };
   const editHandler = () => {
     setEdit(!edit);
   };
-
-  const onePost = useSelector((state: RootState) => state.reducer1.find((item)=> item.id === parseInt(ids, 10))); 
-  const [inputComent, setInputComent] = useState(onePost?.body); 
+  const onePost = useSelector((state: RootState) => state.articleReducer.find((item) => item.id === parseInt(ids, 10)));
+  const [inputEdit, setInputEdit] = useState(onePost?.body);
+  const [inputComent, setInputComent] = useState('');
+  const oneComment = useSelector((state: RootState) => state.commentReducer);
 
   return (
     <>
@@ -35,25 +35,44 @@ const Post = () => {
           <div className="col-xs-8 ">
 
             <h2>{onePost?.title}</h2>
-            <p>{onePost?.body}</p> 
+            <p>{onePost?.body}</p>
             <button
               type='button'
               onClick={() => editHandler()}
             >Edit
             </button>
-            {edit && inputComent &&
+            {edit && inputEdit &&
               <>
-              
                 <EditTextInput
-                  badyText={inputComent}
-                  inputChangeHandler={(e) => inputChangeHandler(e)} 
+                  bodyText={inputEdit}
+                  inputChangeHandler={(e) => inputChangeHandler(e)}
                 />
                 <button
                   type='button'
-                  onClick={() => dispatch(editPost(inputComent, parseInt(ids, 10)))}
-                >Save 
+                  onClick={() => dispatch(editPost(inputEdit, parseInt(ids, 10)))}
+                >Save
                 </button>
               </>}
+            <h2>Add comment</h2>
+            <EditTextInput
+              bodyText={inputComent}
+              inputChangeHandler={(e) => inputComentHandler(e)}
+            />
+            {/* <button
+              type='button'
+              onClick={() => dispatch(editPost(inputEdit, parseInt(ids, 10)))}
+            >Add comment
+            </button> */}
+            {oneComment.filter((item) => item.postId === parseInt(ids, 10)).map((item) =>
+              <div key={item.id}>
+                <Comments
+                  name={item.name}
+                  email={item.email}
+                  body={item.body}
+                />
+              </div>
+            )}
+
           </div>
         </div>
       </div>

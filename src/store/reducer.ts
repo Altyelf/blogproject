@@ -1,11 +1,11 @@
 import { cloneDeep } from 'lodash';
 import { combineReducers } from 'redux';
-import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction } from './action';
-import { posts, Posts } from '../apiData/articles';
+import { EDIT_POST, EditPostAction, LOGIN, AddLogin, SET_POST, SetPostAction, SET_COMMENTS, SetCommentAction } from './action';
+import { posts, Posts, commnetData, CommentData } from '../apiData/articles';
 import { loginInfo, LoginInfo } from '../components/login/loginInfo';
 
 
-export const reducer1 = (state: Posts[] = posts, action: SetPostAction | EditPostAction) => {
+export const articleReducer = (state: Posts[] = posts, action: SetPostAction | EditPostAction) => {
   switch (action.type) {
     case SET_POST: {
       return action.data;
@@ -22,6 +22,17 @@ export const reducer1 = (state: Posts[] = posts, action: SetPostAction | EditPos
       return state;
   }
 };
+
+export const commentReducer = (state: CommentData[] = commnetData, action: SetCommentAction) => {
+  switch (action.type) {
+    case SET_COMMENTS: {
+      return action.data;
+    }
+    default:
+      return state;
+  }
+};
+
 
 export const reducer3 = (state: LoginInfo[] = loginInfo, action: AddLogin) => {
   switch (action.type) {
@@ -43,5 +54,5 @@ export const reducer3 = (state: LoginInfo[] = loginInfo, action: AddLogin) => {
   }
 };
 
-export const rootReducer = combineReducers({ reducer1, reducer3 });
+export const rootReducer = combineReducers({ articleReducer, commentReducer, reducer3 });
 export type RootState = ReturnType<typeof rootReducer>;
