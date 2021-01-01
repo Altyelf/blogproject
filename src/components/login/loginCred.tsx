@@ -18,9 +18,9 @@ export const LoginCred = ({
 }: Props) => {
   return (
     <div className="container">
-      <h1>Login here</h1>
+      <h1 className='header'>Login here</h1>
       <form className="login" onSubmit={submitHandler}>
-        <label className="text" htmlFor="username">
+        <label className="username" htmlFor="username">
           Username
           <input
             required
@@ -30,7 +30,7 @@ export const LoginCred = ({
             onChange={(e) => setUsername(e)}
           />
         </label>
-        <label className="text" htmlFor="password">
+        <label className="password" htmlFor="password">
           Password
           <input
             required

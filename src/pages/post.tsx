@@ -25,7 +25,7 @@ const Post = () => {
   const onePost = useSelector((state: RootState) => state.articleReducer.find((item) => item.id === parseInt(ids, 10)));
   const [inputEdit, setInputEdit] = useState(onePost?.body);
   const [inputComent, setInputComent] = useState('');
-  const oneComment = useSelector((state: RootState) => state.commentReducer); 
+  const oneComment = useSelector((state: RootState) => state.commentReducer);
   const logoutData = useSelector((state: RootState) => state.reducer3);
 
   return (
@@ -40,6 +40,7 @@ const Post = () => {
             <p>{onePost?.body}</p>
             {logoutData?.admin &&
               <button
+                className='button-edit'
                 type='button'
                 onClick={() => editHandler()}
               >
@@ -52,6 +53,7 @@ const Post = () => {
                   inputChangeHandler={(e) => inputChangeHandler(e)}
                 />
                 <button
+                  className='button-save'
                   type='button'
                   onClick={() => dispatch(editPost(inputEdit, parseInt(ids, 10)))}
                 >Save
@@ -63,11 +65,12 @@ const Post = () => {
               inputChangeHandler={(e) => inputComentHandler(e)}
             />
             <button
+              className='button-comment'
               type='button'
               onClick={() => dispatch(addComment({ postId: 101, id: parseInt(ids, 10), name: 'Test', email: 'asd', body: inputComent }))}
             >Add comment
             </button>
-            {            oneComment.filter((item) => item.postId === parseInt(ids, 10)).map((item) =>
+            {oneComment.filter((item) => item.postId === parseInt(ids, 10)).map((item) =>
               <div key={item.id}>
                 <Comments
                   name={item.name}

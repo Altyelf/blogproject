@@ -18,15 +18,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
+    margin-left: 100px;
     width: 70px;
     background-color: aliceblue;
     border-radius: 5px;
 }
 
-.text {
+.username {
+    margin-top: 20px;
+    display: block;
+}
+
+.password {
     margin-top: 20px;
 }
 
 .input {
+    background-color: aliceblue;
     margin: 5px;
+}
+
+.logout-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    background-color: aliceblue;
+    border-radius: 5px;  
 }

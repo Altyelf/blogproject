@@ -2,44 +2,75 @@
 
 .preview-wrapper{
     background-color: #C6D8D3;
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     position: relative;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     margin-bottom: 20px;
+    box-shadow: 5px 5px 5px #bbbbbb;
 }
 .readMore{
     position: absolute; 
     bottom: 10px;
     right: 10px;
     text-decoration: none;
-    color: #F0544F;
+    color: #3c0a53;
+    background-color: rgb(208, 221, 181);
+    box-shadow: 2px 2px 2px #bbbbbb;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
 }
 .prevTitle{
     margin: 0 0 10px 0;
+    padding: 5px;
     color: #331832;
+    background-color: #C6D8D3;
 }
 .prevParagraph{
     margin: 0 0 25px 0; 
+    padding: 5px;
     color: #331832;
+    border-radius: 5px;
+    padding: 10px;
 }
 .textarea--edit{
     width: 100%;
     min-height: 200px;
 }
 .comment--wrapper{
-    background-color: #EFF8E2;
     color: #2D2D34;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #bbbbbb;
     padding: 20px;
     margin-bottom: 15px;
+    background-color: aliceblue;
 }
 .comment--name{
     margin: 0 0 10px 0;
+    background-color: aliceblue;
+
 }
 .comment--parag{
     margin: 10px 0;
+    background-color: aliceblue;
+}
+
+.button-edit {
+    background-color: aliceblue;
+    border-radius: 5px; 
+}
+
+.button-save {
+    background-color: aliceblue;
+    border-radius: 5px; 
+}
+
+.button-comment {
+    width: 100px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    margin: 15px; 
 }
