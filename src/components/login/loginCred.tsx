@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './loginStyle.css';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   password: string;
   setUsername: (e: React.ChangeEvent<HTMLInputElement>) => void;
   setPassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  submitHandler: () => void;
+  submitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 export const LoginCred = ({
@@ -19,10 +19,11 @@ export const LoginCred = ({
   return (
     <div className="container">
       <h1>Login here</h1>
-      <form className="login">
+      <form className="login" onSubmit={submitHandler}>
         <label className="text" htmlFor="username">
           Username
           <input
+            required
             className="input"
             placeholder="Username"
             value={username}
@@ -32,6 +33,7 @@ export const LoginCred = ({
         <label className="text" htmlFor="password">
           Password
           <input
+            required
             className="input"
             placeholder="Password"
             type="password"
@@ -39,10 +41,11 @@ export const LoginCred = ({
             onChange={(e) => setPassword(e)}
           />
         </label>
+        <button className="login-button" type="submit">
+          Login
+        </button>
       </form>
-      <button className="login-button" type="submit" onClick={() => submitHandler()}>
-        Login
-      </button>
+
     </div>
   );
 };

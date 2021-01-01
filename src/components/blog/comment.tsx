@@ -7,7 +7,7 @@ type Props = {
   body: string
 };
 
-export const Comments = ({name, email, body}: Props) => {
+export const Comments = ({ name, email, body }: Props) => {
 
   return (
     <div className="comment--wrapper">

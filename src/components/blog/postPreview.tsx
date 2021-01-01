@@ -8,7 +8,6 @@ type Props = {
 };
 
 export const PostPrev = ({prevParagraph, prevTilte}: Props) => {
-
   return (
     <div className='prevWarapper'>
       <h2 className='prevTitle'>{prevTilte}</h2>

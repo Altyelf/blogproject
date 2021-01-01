@@ -1,29 +1,38 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginCred } from '../components/login/loginCred';
-import { LoginInfo } from '../components/login/loginInfo';
 import { Logout } from '../components/login/logout';
 import { addLogin, addLogout } from '../store/action';
 import { RootState } from '../store/reducer';
+import { loginInfo } from '../components/login/loginInfo';
 
 const Login = () => {
-  const loginData = useSelector((state: LoginInfo[]) => state);
-  const logoutData = useSelector((state: RootState) => state.reducer2);
+  const logoutData = useSelector((state: RootState) => state.reducer3);
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
   const usernameHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUsername(e.target.value);
   };
   const passwordHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPassword(e.target.value);
   };
-  console.log('data', logoutData);
+
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const filteredUser = loginInfo.find(
+      (item) => item.username === username && item.password === password
+    );
+    if (!filteredUser) {
+      alert('Your user name or password is incorrect!');
+      return;
+    }
+    dispatch(addLogin(filteredUser));
+  };
 
   return (
     <>
-      {logoutData.length === 0 ? (
+      {!logoutData?.username ? (
         <div>
           <LoginCred
             username={username}
@@ -32,7 +41,7 @@ const Login = () => {
             setUsername={(e) => usernameHandler(e)}
             // @ts-ignore
             setPassword={(e) => passwordHandler(e)}
-            submitHandler={() => dispatch(addLogin(username, password))}
+            submitHandler={(e) => submit(e)}
           />
         </div>) : (
           <div>
