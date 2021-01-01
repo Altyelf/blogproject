@@ -1,10 +1,12 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/reducer';
-import { editPost } from '../store/action';
+import { editPost, addComment } from '../store/action';
 import { EditTextInput } from '../components/blog/editTextInput';
 import { Comments } from '../components/blog/comment';
+import { CommentData } from '../apiData/articles';
 
 const Post = () => {
 
@@ -23,9 +25,9 @@ const Post = () => {
   const onePost = useSelector((state: RootState) => state.articleReducer.find((item) => item.id === parseInt(ids, 10)));
   const [inputEdit, setInputEdit] = useState(onePost?.body);
   const [inputComent, setInputComent] = useState('');
-  const oneComment = useSelector((state: RootState) => state.commentReducer);
-  const logoutData = useSelector((state: RootState) => state.reducer2);
-  console.log('dati2', logoutData);
+  const oneComment = useSelector((state: RootState) => state.commentReducer); 
+  const logoutData = useSelector((state: RootState) => state.reducer3);
+
   return (
     <>
       <div className="container">
@@ -36,15 +38,13 @@ const Post = () => {
           <div className="col-xs-8 ">
             <h2>{onePost?.title}</h2>
             <p>{onePost?.body}</p>
-            {
-              logoutData && 
+            {logoutData?.admin &&
               <button
                 type='button'
                 onClick={() => editHandler()}
               >
                 Edit
-              </button>
-            }
+              </button>}
             {edit && inputEdit &&
               <>
                 <EditTextInput
@@ -62,12 +62,12 @@ const Post = () => {
               bodyText={inputComent}
               inputChangeHandler={(e) => inputComentHandler(e)}
             />
-            {/* <button
+            <button
               type='button'
-              onClick={() => dispatch(editPost(inputEdit, parseInt(ids, 10)))}
+              onClick={() => dispatch(addComment({ postId: 101, id: parseInt(ids, 10), name: 'Test', email: 'asd', body: inputComent }))}
             >Add comment
-            </button> */}
-            {oneComment.filter((item) => item.postId === parseInt(ids, 10)).map((item) =>
+            </button>
+            {            oneComment.filter((item) => item.postId === parseInt(ids, 10)).map((item) =>
               <div key={item.id}>
                 <Comments
                   name={item.name}

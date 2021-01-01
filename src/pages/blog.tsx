@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React  from 'react';
+import { useSelector } from 'react-redux';
 import { PostPrev } from '../components/blog/postPreview';
-import { Posts } from '../apiData/articles';
 import { RootState } from '../store/reducer';
-import { fetchPostsData } from '../store/action';
 import { ReadMore } from '../components/blog/readmore';
 
 const Blog = () => {
   const postData = useSelector((state: RootState) => state.articleReducer);
-  const dispatch = useDispatch();
-  const logoutData = useSelector((state: RootState) => state.reducer2);
-
-  useEffect(() => {
-    if (postData.length === 0) {
-      dispatch(fetchPostsData());
-    }
-  }, []);
+  const logoutData = useSelector((state: RootState) => state.reducer3);
 
   return (
     <div className="container">
@@ -32,7 +23,7 @@ const Blog = () => {
                 prevTilte={item.title}
                 prevParagraph={item.body}
               /> 
-              {logoutData.length === 1 &&
+              {logoutData.username &&
               <ReadMore 
                 prevLink='Read more'
                 id={item.id}

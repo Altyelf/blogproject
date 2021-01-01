@@ -8,8 +8,7 @@ type Props = {
 };
 
 export const ReadMore = ({ prevLink, id }: Props) => {
-
   return (
-      <Link className='readMore' to={`/posts/${id}`}>{prevLink}</Link>
+    <Link className='readMore' to={`/posts/${id}`}>{prevLink}</Link>
   );
 };

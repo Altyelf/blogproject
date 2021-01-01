@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { Posts, CommentData } from '../apiData/articles';
+import { LoginInfo } from '../components/login/loginInfo';
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -9,25 +10,28 @@ export const EDIT_POST = 'EDIT_POST';
 export const SET_POST = 'SET_POST';
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const ADD_COMMENT = 'ADD_COMMENT';
-export const addComment = () => {
-  return {
-    type: ADD_COMMENT 
 
+export const addComment = (comment: CommentData) => {
+  return {
+    type: ADD_COMMENT,
+    comment
   };
+};
+
+export type AddComment = {
+  type: typeof ADD_COMMENT,
+  comment: CommentData 
 };
 
 export type AddLogin = {
   type: typeof LOGIN;
-  id: number;
-  username: string;
-  password: string;
+  user: LoginInfo
 };
 
-export const addLogin = (username: string, password: string) => {
+export const addLogin = (user: LoginInfo) => {
   return {
     type: 'LOGIN',
-    username,
-    password,
+    user
   };
 };
 
@@ -43,7 +47,7 @@ export const addLogout = () => {
 
 export type EditPostAction = {
   type: typeof EDIT_POST;
-  value: string ;
+  value: string;
   id: number;
 };
 
