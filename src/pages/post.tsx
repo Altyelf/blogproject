@@ -79,7 +79,6 @@ const Post = () => {
                 />
               </div>
             )}
-
           </div>
         </div>
       </div>

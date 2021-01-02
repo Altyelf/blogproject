@@ -12,7 +12,7 @@ const Blog = () => {
     <div className="container">
       <div className="row ">
         <div className="col-xs-12 center-xs">
-          <h1>Blog</h1>
+          <h1>Log in to view full posts</h1>
         </div>
       </div>
       <div className="row">
